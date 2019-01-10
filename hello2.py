@@ -26,6 +26,29 @@ def object():
     user1 = User(1,'thinkchina')
     return render_template("object.html", user=user1)
 
+@app.route('/query_user/<user_id>')
+def query_user_id(user_id):
+    user2 = None
+    if int(user_id) == 1:
+        user2 = User(1,"peter2")
+    return render_template("userif.html", user=user2)
+
+@app.route('/list_user')
+def list_user():
+    users = []
+    for i in range(1,11):
+        user = User(i, "peter" + str(i))
+        users.append(user)
+    return render_template("user_list.html",users = users)
+
+@app.route('/one')
+def page1():
+    return render_template("base-1.html")
+
+@app.route('/two')
+def page2():
+    return render_template("base-2.html")
+
 @app.route('/query_url')
 def query_url():
     return 'query_url is : ' + url_for('index')
